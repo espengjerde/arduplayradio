@@ -14,33 +14,41 @@ void setup(void){
 	radio.begin();
 	radio.openReadingPipe(1,pipe);
 	radio.startListening();
-	pinMode(LED1, OUTPUT);
-	pinMode(LED2, OUTPUT);
+	pinMode(LED_B, OUTPUT);
+	pinMode(LED_M, OUTPUT);
 }
  
 void loop(void){
 	if (radio.available()){
 	   Serial.println("Radio Available");   
+	   radio.read(msg, 1);
+	   
 	   Serial.println("Checking button and motion boards");
 	   Serial.println(msg[0]);
+	   
 	   if (msg[0] == 111 || msg[0] == 222){
 			Serial.println("message recieved");
 			if(msg[0] == 111){
 				Serial.println("Recieved from button board");
-				Serial.println("Setting led 48 on");
-				digitalWrite(LED1, HIGH);
+				Serial.println("Setting Button LED on");
+				digitalWrite(LED_B, HIGH);
 			}
 			if(msg[0] == 222 ) {
 				Serial.println("Recieved from motion detector");
-				Serial.println("Setting led 53 on");
-				digitalWrite(LED2, HIGH);
+				Serial.println("Setting Motion LED on");
+				digitalWrite(LED_M, HIGH);
 			}
 	   }
 	   else {
 			Serial.println("No motion or button push");
-			digitalWrite(LED1, LOW);
-			digitalWrite(LED2, LOW);
-			Serial.println("Turn off");
+			if(msg[0] == 221){
+				digitalWrite(LED_M, LOW);
+				Serial.println("Turn off Motion LED");
+			}
+			if(msg[0] == 100){
+				digitalWrite(LED_B, LOW);
+				Serial.println("Turn off Button LED");
+			}
 	   }
 	}
 	else {
