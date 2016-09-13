@@ -21,7 +21,7 @@ void setup(void){
 void loop(void){
 	if (radio.available()){
 	   Serial.println("Radio Available");   
-	   Serial.println("Checking button and motion boards");
+	   Serial.println("Checking button");
 	   Serial.println(msg[0]);
 		if(msg[0] == 111){
 			Serial.println("Recieved from button board");
@@ -29,7 +29,7 @@ void loop(void){
 			digitalWrite(LED1, HIGH);
 	   }
 	   else {
-			Serial.println("button push");
+			Serial.println("no button push");
 			digitalWrite(LED1, LOW);
 			digitalWrite(LED2, LOW);
 			Serial.println("Turn off");
