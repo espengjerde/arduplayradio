@@ -12,10 +12,11 @@ void setup() {
 	pinMode(inputPin, INPUT);     // declare sensor as input
 	Serial.begin(9600);
 	radio.begin();
-	radio.openWritingPipe(pipe);
-// }
+	radio.openWritingPipe(pipe); 
+	radio.stopListening ();
+}
  
-void loop(){
+void loop() {
 	val = digitalRead(inputPin);  // read input value
 	if (val == HIGH) {            // check if the input is HIGH
 	   msg[0] = 222;

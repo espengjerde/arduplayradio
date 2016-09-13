@@ -14,7 +14,8 @@ void setup() {
 	Serial.begin(9600);
 	radio.begin();
 	radio.openWritingPipe(pipe);
-// }
+	radio.stopListening ();
+}
  
 void loop(){
 	msg[0] = 111;
