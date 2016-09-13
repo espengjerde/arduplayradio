@@ -6,8 +6,8 @@ recieve both;
 int msg[1];
 RF24 radio(9,53);
 const uint64_t pipe = 0xE8E8F0F0E1LL;
-int LED1 = 48;
-int LED2 = 49;
+int LED_B = 48;
+int LED_M = 49;
  
 void setup(void){
 	Serial.begin(9600);
