@@ -18,10 +18,15 @@ void setup() {
 }
  
 void loop(){
-	msg[0] = 111;
+	
 	val = digitalRead(inputPin);  // read input value
 	if (val == HIGH) {            
+		msg[0] = 111;	
 		Serial.println("BBB: BUTTON Pushed");
 		radio.write(msg, 1);	//send "message" to radio
+	}
+	else{
+		msg[0] = 100;
+		radio.write(msg, 1);
 	}
 }

@@ -22,9 +22,8 @@ void setup(void){
 void loop(void){
 	if (radio.available()){
 		Serial.println("Radio Available");   
-		bool done = false;
-		radio.read(msg, 1);
 		Serial.println("Checking button");
+		radio.read(msg, 1);
 		Serial.println(msg[0]);
 		if(msg[0] == 111){
 			Serial.println("Recieved from button board");
