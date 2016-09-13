@@ -37,7 +37,7 @@ void loop(void){
 			}
 	   }
 	   else {
-			System.println("No motion or button push");
+			Serial.println("No motion or button push");
 			digitalWrite(LED1, LOW);
 			digitalWrite(LED2, LOW);
 			Serial.println("Turn off");
