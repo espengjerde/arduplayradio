@@ -11,7 +11,6 @@ DHT dht(DHTPIN,DHTTYPE);
 int msg[1];  
 RF24 radio(9,10);
 const uint64_t pipe = 0xE8E8F0F0E1LL;
-int val = 0;                    // variable for reading the pin status
 
 
 void setup() {
@@ -22,8 +21,8 @@ void setup() {
 }
  
 void loop(){
-    int temp = DHT.read(DHTPIN);	
-	if (temp <= 20 ) {            
+    float temp = dht.readTemperature();	
+	if (temp <= 20.0 ) {            
 		msg[0] = 111;	
 		Serial.println("YELLO");
 		radio.write(msg, 1);	//send "message" to radio
