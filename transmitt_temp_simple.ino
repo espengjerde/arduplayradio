@@ -22,8 +22,8 @@ void setup() {
  
 void loop(){
         msg[0] = dht.readTemperature();	
-    	radio.write(msg, 1);
         Serial.println(msg[0]);
+    	int status = radio.write(msg, sizeof(msg));
+        Serial.prinln(status);
         delay(200);
-    }
 }

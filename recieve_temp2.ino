@@ -21,7 +21,7 @@ void setup(void){
 void loop(void){
 	if (radio.available()){
 	   Serial.println("Radio Available");   
-	   radio.read(msg, 1);
+	   int status = radio.read(msg, 4);
 	   
 	   Serial.println("Reading temperature");
 	   Serial.println(msg[0]);
@@ -49,8 +49,5 @@ void loop(void){
         delay(500);
         return;
     }
-	}
-	else {
-	   Serial.println("No radio available");
-    }
+  }
 }
