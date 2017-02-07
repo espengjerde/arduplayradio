@@ -27,31 +27,24 @@ void loop(void){
 	   Serial.println(msg[0]);
 	   
 	   if (msg[0] == 111 || msg[0] == 222){
-			Serial.println("message recieved");
+			Serial.println("temp recieved");
 			if(msg[0] == 111){
-				Serial.println("Recieved from button board");
-				Serial.println("Setting Button LED on");
-				digitalWrite(LED_B, HIGH);
+				Serial.println("Temp below or eq 20C");
+				Serial.println("Setting Yellow LED on");
+				digitalWrite(LED_M, LOW);       //Red off
+                digitalWrite(LED_B, HIGH);      //Yellow on
 			}
 			if(msg[0] == 222 ) {
-				Serial.println("Recieved from motion detector");
-				Serial.println("Setting Motion LED on");
-				digitalWrite(LED_M, HIGH);
-			}
-	   }
-	   else {
-			Serial.println("No motion or button push");
-			if(msg[0] == 221){
-				digitalWrite(LED_M, LOW);
-				Serial.println("Turn off Motion LED");
-			}
-			if(msg[0] == 100){
-				digitalWrite(LED_B, LOW);
-				Serial.println("Turn off Button LED");
+				Serial.println("Temp above 20C");
+				Serial.println("Setting Red LED on");
+                digitalWrite(LED_B, LOW);           //Yellow on
+				digitalWrite(LED_M, HIGH);          //Red off
 			}
 	   }
 	}
 	else {
 	   Serial.println("No radio available");
-	}
+	   digitalWrite(LED_B, LOW)
+       digitalWrite(LED_M, LOW)
+    }
 }
