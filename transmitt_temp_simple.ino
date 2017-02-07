@@ -8,9 +8,14 @@
 
 DHT dht(DHTPIN,DHTTYPE);
 
-float msg;  
 RF24 radio(9,10);
 const uint64_t pipe = 0xE8E8F0F0E1LL;
+
+struct msg_t {
+  float temperature;
+  float humidity;
+};
+msg_t msg;
 
 void setup() {
 	Serial.begin(9600);
@@ -20,7 +25,9 @@ void setup() {
 }
  
 void loop(){
-        msg = dht.readTemperature();	
+        float temp = dht.readTemperature();	
+        float hum = dht.readHumidity();
+        msg (msg_t){temp,hum};
         Serial.println(msg);
-        radio.write(msg, 4);
+        radio.write(&msg, sizeof(msg);
 }
