@@ -8,7 +8,7 @@ RF24 radio(9,53);
 const uint64_t pipe = 0xE8E8F0F0E1LL;
 int LED_B = 48;
 int LED_M = 49;
- 
+int status = -2; 
 void setup(void){
 	Serial.begin(9600);
 	radio.begin();
@@ -21,9 +21,9 @@ void setup(void){
 void loop(void){
 	if (radio.available()){
 	   Serial.println("Radio Available");   
-	   int status = radio.read(msg, 4);
-	   
+	   status = radio.read(msg, 4); 
 	   Serial.println("Reading temperature");
+       Serial.println(status);
 	   Serial.println(msg[0]);
        digitalWrite(LED_M, LOW);
        digitalWrite(LED_B, LOW);   
