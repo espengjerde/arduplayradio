@@ -26,13 +26,26 @@ void loop(){
 		msg[0] = 111;	
 		Serial.println("YELLO");
 		radio.write(msg, 1);	//send "message" to radio
-        Serial.println("Temp:" + temp);
+        Serial.println(temp);
 	}
 	else{
+		msg[0] = 100;
+		radio.write(msg, 1);
+        Serial.println(temp);
+        Serial.println("RED and YELLOW");
+	}
+    if (temp > 20.0){
 		msg[0] = 222;
 		radio.write(msg, 1);
-        Serial.println("Temp:" + temp);
+        Serial.println(temp);
         Serial.println("RED");
-	}
+    }
+    else{
+		msg[0] = 200;
+		radio.write(msg, 1);
+        Serial.println(temp);
+        Serial.println("YELLOW and RED");
+        
+    }
     delay(1000);
 }
