@@ -21,10 +21,9 @@ void setup() {
 }
  
 void loop(){
-    float temp = dht.readTemperature();	
-		msg[0] = temp;
-		radio.write(msg, 1);
-        Serial.println(temp);
+        msg[0] = dht.readTemperature();	
+    	radio.write(msg, 1);
+        Serial.println(msg[0]);
+        delay(200);
     }
-    delay(1000);
 }
