@@ -28,7 +28,6 @@ void loop(void){
 	   radio.read(&inmsg, sizeof(inmsg); 
 	   Serial.println("Reading temperature");
        msg = inmsg.temperature;
-	   Serial.println(msg);
        digitalWrite(LED_M, LOW);
        digitalWrite(LED_B, LOW);   
        
@@ -46,7 +45,7 @@ void loop(void){
         delay(500);
         return;
     }
-    if(msg > 35.0){
+    if(msg < 35.0){
         Serial.print("RED");
         digitalWrite(LED_M,HIGH);
         digitalWrite(LED_B,LOW);
