@@ -3,11 +3,14 @@
 #include "RF24.h"
 #include <dht.h>
 
-dht DHT;
+#define DHTPIN 7
+#define DHTTYPE DHT11
+
+DHT dht(DHTPIN,DHTTYPE);
+
 int msg[1];  
 RF24 radio(9,10);
 const uint64_t pipe = 0xE8E8F0F0E1LL;
-#define DHT_PIN 7
 int val = 0;                    // variable for reading the pin status
 
 
@@ -19,7 +22,7 @@ void setup() {
 }
  
 void loop(){
-    int temp = DHT.read(DHT11_PIN);	
+    int temp = DHT.read(DHTPIN);	
 	if (temp <= 20 ) {            
 		msg[0] = 111;	
 		Serial.println("YELLO");
